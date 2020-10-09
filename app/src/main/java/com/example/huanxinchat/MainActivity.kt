@@ -5,16 +5,33 @@ import android.os.Bundle
 import android.util.Log
 import com.hyphenate.EMCallBack
 import com.hyphenate.chat.EMClient
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BasePermissionActivity() {
-    val userName = "YXA6TYDA_OZEQniTrMuCK_z8gQ"
-    val psd = "YXA6AuYDeAKIx4hwsIOjVv41MdXen5E"
+    val userName = "libo"
+    val psd = "123456"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         requestPermissions()
+
+        btnRegister.setOnClickListener {
+            imRegisterAndLogin()
+        }
+
+        btnLogin.setOnClickListener {
+            login()
+        }
+
+        btnLogout.setOnClickListener {
+            logout()
+        }
+
+        //添加连接监听器
+        EMClient.getInstance().addConnectionListener(ConnectionListener())
+
     }
 
     /**
@@ -28,7 +45,7 @@ class MainActivity : BasePermissionActivity() {
 
         requestPermissions(permissions, object : PermissionListener {
             override fun onGranted() {
-                imRegisterAndLogin()
+
             }
 
             override fun onDenied(deniedPermissions: MutableList<String>?) {
@@ -39,10 +56,12 @@ class MainActivity : BasePermissionActivity() {
     }
 
     fun imRegisterAndLogin() {
+
         //注意：这里的注册有个坑，必须要在子线程中才可以，否则会抛出异常
         Thread {
             kotlin.run {
                 //注册账号,注册失败会抛出HyphenateException: Registration failed.
+                //比如重复注册，比如在子线程中注册
                 EMClient.getInstance().createAccount(userName, psd)  //同步方法
                 runOnUiThread {
                     //账号登录
@@ -50,6 +69,23 @@ class MainActivity : BasePermissionActivity() {
                 }
             }
         }.start()
+    }
+
+    fun logout() {
+        EMClient.getInstance().logout(true, object: EMCallBack {
+            override fun onSuccess() {
+                Log.i("minfo", "退出登录成功")
+            }
+
+            override fun onProgress(progress: Int, status: String?) {
+
+            }
+
+            override fun onError(code: Int, error: String?) {
+                Log.i("minfo", "退出登录失败")
+            }
+
+        })
     }
 
     override fun onRequestPermissionsResult(
