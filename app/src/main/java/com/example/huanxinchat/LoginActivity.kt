@@ -2,14 +2,15 @@ package com.example.huanxinchat
 
 import android.Manifest
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
+import android.widget.Toast
 import com.hyphenate.EMCallBack
 import com.hyphenate.chat.EMClient
 import kotlinx.android.synthetic.main.activity_login.*
+import java.lang.Exception
 
 class LoginActivity : BasePermissionActivity() {
-    val userName = "libo"
-    val psd = "123456"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +19,7 @@ class LoginActivity : BasePermissionActivity() {
         requestPermissions()
 
         btnRegister.setOnClickListener {
-            imRegisterAndLogin()
+            gotoRegister()
         }
 
         btnLogin.setOnClickListener {
@@ -55,14 +56,30 @@ class LoginActivity : BasePermissionActivity() {
         })
     }
 
-    fun imRegisterAndLogin() {
+    fun gotoRegister() {
+        var userId = etUserId.text.toString()
+        var userPsd = etUserPsd.text.toString()
+        if (TextUtils.isEmpty(userId) || TextUtils.isEmpty(userPsd)) {
+            Toast.makeText(this, "请输入完整的账号信息", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        imRegisterAndLogin(userId, userPsd)
+    }
+
+    private fun imRegisterAndLogin(userId: String, psd: String) {
 
         //注意：这里的注册有个坑，必须要在子线程中才可以，否则会抛出异常
         Thread {
             kotlin.run {
                 //注册账号,注册失败会抛出HyphenateException: Registration failed.
                 //比如重复注册，比如在子线程中注册
-                EMClient.getInstance().createAccount(userName, psd)  //同步方法
+                try {
+                    EMClient.getInstance().createAccount(userId, psd)  //同步方法
+                } catch (e: Exception) {
+                    Log.i("minfo", "账号已存在")
+                }
+
                 runOnUiThread {
                     //账号登录
                     login()
@@ -97,7 +114,14 @@ class LoginActivity : BasePermissionActivity() {
     }
 
     fun login() {
-        EMClient.getInstance().login(userName, psd, object: EMCallBack {
+        var userId = etUserId.text.toString()
+        var userPsd = etUserPsd.text.toString()
+        if (TextUtils.isEmpty(userId) || TextUtils.isEmpty(userPsd)) {
+            Toast.makeText(this, "请输入完整的账号信息", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        EMClient.getInstance().login(userId, userPsd, object: EMCallBack {
             override fun onSuccess() {
                 Log.i("minfo", "登录聊天服务器成功")
             }
