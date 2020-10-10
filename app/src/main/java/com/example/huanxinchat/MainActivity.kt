@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     private fun initFragments() {
         fragments.add(MeFragment())
         fragments.add(MeFragment())
-        fragments.add(MeFragment())
+        fragments.add(FindFragment())
         fragments.add(MeFragment())
 
         viewPager.adapter = FmPagerAdapter(supportFragmentManager, fragments, titles)
@@ -57,4 +57,5 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
+
 }
