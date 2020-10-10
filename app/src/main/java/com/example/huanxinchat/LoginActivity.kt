@@ -5,15 +5,15 @@ import android.os.Bundle
 import android.util.Log
 import com.hyphenate.EMCallBack
 import com.hyphenate.chat.EMClient
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_login.*
 
-class MainActivity : BasePermissionActivity() {
+class LoginActivity : BasePermissionActivity() {
     val userName = "libo"
     val psd = "123456"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
         requestPermissions()
 
