@@ -29,8 +29,9 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:button="@null"
+            android:paddingTop="5dp"
             android:text="微信"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:drawableTop="@drawable/selector_menu_wechat"/>
 
         <RadioButton
@@ -40,8 +41,9 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:button="@null"
+            android:paddingTop="5dp"
             android:text="通讯录"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:drawableTop="@drawable/selector_menu_contact"/>
 
         <RadioButton
@@ -51,8 +53,9 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:button="@null"
+            android:paddingTop="5dp"
             android:text="发现"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:drawableTop="@drawable/selector_menu_find"/>
 
         <RadioButton
@@ -62,8 +65,9 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:button="@null"
+            android:paddingTop="5dp"
             android:text="我"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:drawableTop="@drawable/selector_menu_me"/>
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

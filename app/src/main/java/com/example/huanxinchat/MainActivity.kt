@@ -1,11 +1,14 @@
 package com.example.huanxinchat
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RadioButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
+import com.hyphenate.easeui.ui.EaseContactListFragment
+import com.hyphenate.easeui.ui.EaseConversationListFragment
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
     var fragments = ArrayList<Fragment>()
@@ -32,8 +35,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFragments() {
-        fragments.add(MeFragment())
-        fragments.add(MeFragment())
+        fragments.add(EaseConversationListFragment())
+        var contactListFragment = EaseContactListFragment()
+        //需要设置联系人列表才能启动fragment
+//        contactListFragment.setContactsMap()
+        fragments.add(contactListFragment)
         fragments.add(FindFragment())
         fragments.add(MeFragment())
 
