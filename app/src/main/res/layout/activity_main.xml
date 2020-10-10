@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:background="#f7f7f7"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <RadioButton
+            android:id="@+id/btnWeChat"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:button="@null"
+            android:text="微信"
+            android:textSize="12sp"
+            android:drawableTop="@drawable/selector_menu_wechat"/>
+
+        <RadioButton
+            android:id="@+id/btnContact"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:button="@null"
+            android:text="通讯录"
+            android:textSize="12sp"
+            android:drawableTop="@drawable/selector_menu_contact"/>
+
+        <RadioButton
+            android:id="@+id/btnFind"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:button="@null"
+            android:text="发现"
+            android:textSize="12sp"
+            android:drawableTop="@drawable/selector_menu_find"/>
+
+        <RadioButton
+            android:id="@+id/btnMe"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:button="@null"
+            android:text="我"
+            android:textSize="12sp"
+            android:drawableTop="@drawable/selector_menu_me"/>
+    </RadioGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>

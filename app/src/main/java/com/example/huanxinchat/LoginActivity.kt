@@ -1,6 +1,7 @@
 package com.example.huanxinchat
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -124,6 +125,7 @@ class LoginActivity : BasePermissionActivity() {
         EMClient.getInstance().login(userId, userPsd, object: EMCallBack {
             override fun onSuccess() {
                 Log.i("minfo", "登录聊天服务器成功")
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             }
 
             override fun onProgress(progress: Int, status: String?) {

@@ -28,6 +28,7 @@
         app:layout_constraintTop_toTopOf="@id/tvUserId"
         app:layout_constraintBottom_toBottomOf="@id/tvUserId"
         android:layout_marginLeft="10dp"
+        android:text="libo"
         android:background="@null"/>
 
     <View
@@ -60,6 +61,7 @@
         app:layout_constraintTop_toTopOf="@id/tvUserPsd"
         app:layout_constraintBottom_toBottomOf="@id/tvUserPsd"
         android:inputType="textPassword"
+        android:text="123456"
         android:layout_marginLeft="10dp"
         android:background="@null"/>
 
